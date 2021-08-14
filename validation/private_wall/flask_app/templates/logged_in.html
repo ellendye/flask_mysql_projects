@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://kit.fontawesome.com/ffd2134fa2.js" crossorigin="anonymous"></script>
+    <title>Welcome</title>
+</head>
+<body>
+    <div class="container">
+        <!-- MESSAGES SHOW UP WHEN A USER SIGNS UP SAYING WELCOME -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-info">
+            <a class="close" href="">Click here to close message</a>
+            <ul>
+                {% for message in messages %}
+                <li>{{message}}</li> 
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% endwith %}
+    </div>
+    <nav class="d-flex">
+        <h2>Coding Dojo Wall</h2>
+        <div class="d-flex right">
+            <h4>Welcome, {{session['first_name']}}</h4>
+            <a href="/logout">Logout</a>
+        </div>
+    </nav>
+
+    <div class="container d-flex">
+        <div class="box wall">
+            <h4>{{num_messages_received['count']}} Message(s) for You</h4>
+            {%for message in new_messages%}
+            <h6 class="sender">{{message.sender_first_name}} {{message.sender_last_name}} said at {{message.message_time}}: </h6>
+            <div class="box message">
+                <p>{{message.message}}</p>
+                <a href="/wall/delete_message/{{message.message_id}}"><i class="fas fa-trash-alt" name="message.message_id"></i></a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="line"></div>
+        <div class="box wall">
+            <h4>Send Messages</h4>
+            <p class="green">You have sent {{num_messages_sent['count']}} messages</p>
+            {%for user in other_users%}
+            <form action="/wall/add_message" method="POST">
+                <div class="form-group d-flex commentboxes">
+                <label for="{{user.id}}">{{user.first_name}} {{user.last_name}}</label>
+                <textarea name="message" id="message" cols="10" rows="3"></textarea>
+                <input type="hidden" value="{{user.id}}" name="id">
+                <input type="submit" value="Send" class="btn btn-primary comment">
+                </div><br>
+            </form>
+            {%endfor%}
+        </div>
+    </div>
+
+    
+</body>
+</html>

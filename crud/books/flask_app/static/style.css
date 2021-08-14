@@ -1,0 +1,22 @@
+.container {
+    align-items: flex-start;
+    justify-content: space-around;
+    margin-top: 2em;
+}
+h1 {
+    margin-bottom: 1em;
+}
+
+.box {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+    padding: 1em;
+    width: 300px;
+    gap: 1em;
+}
+
+.btn {
+    margin-top: 1em;
+}

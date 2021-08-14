@@ -1,0 +1,90 @@
+/* BASIC SETTINGS I'VE BEEN USING FOR ALL FORMS - CONTAINER THROUGH BTN add on an additional class for further formatting */
+.container {
+    align-items: flex-start;
+    justify-content: space-around;
+    margin-top: 2em;
+    gap: 2em;
+}
+h1 {
+    margin-bottom: 1em;
+}
+
+.box {
+    border: 2px solid black;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1em;
+    padding: 1em;
+    width: 75%;
+    gap: 1em;
+}
+
+.btn {
+    margin-top: 1em;
+}
+/* CODING DOJO NAV BAR SETTINGS */
+nav {
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 2px rgba(0, 0, 255, 0.712) solid;
+    padding: 0 1em;
+}
+/* CODING DOJO WALL SETTINGS, BODY OF PAGE */
+.right {
+    gap: 1em;
+    align-items: center;
+}
+
+.wall {
+    padding-top: 0;
+    border: none;
+}
+
+.wall h4 {
+    text-decoration: underline;
+}
+
+.line {
+    width: .5em;
+    height: 100vw;
+    background-color: black;
+}
+
+/* SEND MESSAGES SETTINGS */
+.commentboxes{
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1em;
+}
+
+.commentboxes label{
+    flex: 1;
+}
+.commentboxes input{
+    flex: 1;
+}
+.comment {
+    margin-top: 0;
+}
+.commentboxes textarea{
+    flex: 3;
+}
+
+.green {
+    color: green;
+    font-weight: bolder;
+}
+
+/* settings for sender */
+
+.sender{
+    color: rgba(0, 0, 255, 0.712);
+}
+
+.message {
+    border-radius: 1em;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}

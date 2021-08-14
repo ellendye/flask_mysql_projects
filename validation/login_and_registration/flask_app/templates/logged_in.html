@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Welcome</title>
+</head>
+<body>
+    <div class="container">
+        <!-- MESSAGES SHOW UP WHEN A USER SIGNS UP SAYING WELCOME -->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-success">
+            <a class="close" href="">Click here to close message</a>
+            <ul>
+                {% for message in messages %}
+                <li>{{message}}</li> 
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% endwith %}
+        <h1>You are logged in {{session['first_name']}}</h1>
+        <a href="/logout">Logout</a>
+    </div>
+    
+</body>
+</html>

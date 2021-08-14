@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Show Recipe</title>
+</head>
+<body>
+    <div class="container">
+        <nav class="d-flex align-items-end justify-content-between">
+            <h1 class="header">Welcome, {{session['first_name']}}</h1>
+            <div class="links d-flex">
+                <a href="/dashboard">Back to Dashboard</a>
+                <a href="/recipes/new">Create</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </nav>
+        <!-- show recipe details. used pre to format the recipe and the jinja strftime to format the date -->
+        <h2 class="title">{{recipe.name}}</h2>
+        <div class="border">
+            <h4>Description: </h4>
+            <pre>{{recipe.description }}</pre><br>
+            <h4>Under 30 minutes: </h4>
+            <p>{{recipe.under_thirty_mins}}</p><br>
+            <h4>Date created on: </h4>
+            <p>{{ recipe.date_made_on.strftime("%B %d, %Y")}}</p><br>
+            <h4>Instructions: </h4>
+            <pre>{{recipe.instructions }}</pre>
+        </div>
+    </div>
+</body>
+</html>

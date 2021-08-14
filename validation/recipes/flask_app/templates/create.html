@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    
+    <title>Create New Recipe</title>
+</head>
+<body>
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-danger">
+            <a class="close" href="">Click here to close message</a>
+            <ul>
+                {% for message in messages %}
+                <li>{{message}}</li> 
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% endwith %}
+        <nav class="d-flex align-items-end justify-content-between">
+            <h1 class="header">Add New Recipe</h1>
+            <div class="links">
+                <a href="/">Dashboard</a>
+                <a href="/logout">Logout</a>
+            </div>
+        </nav>
+
+        <form action="/recipes/new/submit" method="POST"><br>
+            <label for="name">Name: </label>
+            <input class="form-control" type="text" name="name"><br>
+            <label for="description">Description: </label>
+            <textarea class="form-control" name="description" id="description" cols="30" rows="10"></textarea><br>
+            <label for="instructions">Instructions: </label>
+            <textarea class="form-control" name="instructions" id="instructions" cols="30" rows="10"></textarea><br>
+            <label for="date_made_on">Date Made On: </label>
+            <input class = "form-control" type="date" name = "date_made_on"><br>
+            <label for="under_thirty_mins">Under 30 minues?</label><br>
+            <input type="radio" name="under_thirty_mins" id="yes" value="yes" checked> Yes
+            <input type="radio" name="under_thirty_mins" id = "no" value = "no"> No <br>
+            <input class="btn btn-primary" type="submit" value="Create">
+        </form>
+            
+    </div>
+</body>
+</html>

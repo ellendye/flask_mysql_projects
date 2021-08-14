@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <title>Edit User {{user_info.id}}</title>
+</head>
+<body>
+
+    <h1>Edit User {{user_info.id}}</h1> 
+    <a href="/users">Home</a>
+
+    <form action="/users/edit/{{user_info.id}}/update" method="POST">
+        <div class='form-group'>
+            <label for="fname">First Name:</label>
+            <input type="text" name="fname" value="{{user_info.first_name}}">
+        </div><br>
+        <div class='form-group'>
+            <label for="lname">Last Name:</label>
+            <input type="text" name="lname" value="{{user_info.last_name}}">
+        </div><br>
+        <div class='form-group'>
+            <label for="email" >Email address:</label>
+            <input type="text" name="email" value="{{user_info.email}}">
+        </div><br>
+        <input type="submit" value="Udpate" class = 'btn btn-primary'>
+        <a href="/users/{{user_info.id}}">Show User</a>
+    </form> 
+
+
+</body>
+</html>

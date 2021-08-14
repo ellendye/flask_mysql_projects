@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <title>Login & Registration</title>
+</head>
+<body>
+    {% if not 'id' in session%}
+    <!-- SHOW THIS PAGE IF NO USER IS LOGGED IN -->
+    <h1 class="container">Login and Registration</h1>
+    <!-- Figure out how to show messages on each line? find the documentation  -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="alert alert-danger">
+        <a class="close" href="">Click here to close message</a>
+        <ul>
+            {% for message in messages %}
+            <li>{{message}}</li> 
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    {% endwith %}
+    <div class="container d-flex">
+        <div class="box">
+            <h2>Register Here</h2>
+            <form action="/validate" method="POST">
+                <input type="hidden" name="which_form" value="registration">
+                <label for="first_name">First Name: </label>
+                <input type="text" name = "first_name"><br>
+                <label for="last_name">Last Name: </label>
+                <input type="text" name = "last_name"><br>
+                <label for="email">Email: </label><br>
+                <input type="text" name = "email"><br>
+                <label for="password">Password (minimum 8 characters): </label>
+                <input type="password" name="password"><br>
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" name = "confirm_password"><br>
+                <input type="submit" value="Register" class="btn btn-primary">
+            </form>
+        </div>
+        <div class="box">
+            <h2>Login Here</h2>
+            <form action="/validate" method="POST">
+                <input type="hidden" name="which_form" value="login">
+                <label for="email">Email: </label>
+                <input type="text" name = "email"><br><br>
+                <label for="password">Password: </label>
+                <input type="password" name="password">
+                <input type="submit" value="Login" class="btn btn-primary">
+            </form>
+        </div>
+    </div>
+    <!-- THIS PAGE WILL SHOW IF A USER HAS NOT LOGGED OUT -->
+    {%else%}
+    <div class="container">
+    <h1>Hello {{session ['first_name'] }} this is the homepage</h1>
+    <a href="/logout">Logout</a>
+    {%endif%}
+    </div>
+</body>
+</html>
